@@ -28,7 +28,7 @@ class Hand
     end
     
     def is_blackjack?
-        highest_value == 21 && @cards.size == 2
+        @cards.size == 2 && highest_value == 21
     end
 
     def is_bust?
@@ -37,6 +37,15 @@ class Hand
         else
             value > 21
         end
+    end
+
+    def is_pair?
+        @cards.size == 2 && cards[0].value == cards[1].value
+    end
+
+    def pair_highest_value
+        raise "pair_highest_value can only be called on pairs" if !is_pair?
+        return @cards[0].bj_highest_value
     end
 
     def to_s

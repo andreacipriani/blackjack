@@ -10,6 +10,12 @@ class Card
         return [1,11] if is_ace?
         return @value.to_i
     end
+    
+    def bj_highest_value
+        return 10 if ["J", "Q", "K"].include?(@value)
+        return 11 if is_ace?
+        return @value.to_i
+    end
 
     def is_ace?
         @value == "A"
