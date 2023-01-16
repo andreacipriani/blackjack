@@ -44,6 +44,8 @@ class Hand
             "#{@cards[0]}"
         elsif is_blackjack?
             "#{@cards.join(", ")} = Blackjack!"
+        elsif is_bust?
+            "#{@cards.join(", ")} = Busted!"
         else
             "#{@cards.join(", ")} = #{value}"
         end

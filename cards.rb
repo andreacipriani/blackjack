@@ -55,10 +55,6 @@ class Sabot
             @cards.pop
         end
     end
-    
-    def shuffle
-        @cards.shuffle!
-    end
 
     def to_s
         @cards.join(", ")
@@ -71,6 +67,7 @@ class Sabot
             deck = Deck.new
             @cards += deck.cards
         end
+        @cards.shuffle!
         puts "Sabot built with #{@n_decks} decks and a total of #{@cards.size} cards"
     end
 end

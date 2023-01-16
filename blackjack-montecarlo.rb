@@ -19,8 +19,6 @@ class Game
     end
     
     def play
-        puts "Shuffling sabot"
-        @sabot.shuffle
         hand_counter = 1
         @n_hands.times do
             @hand_status = :in_progress
@@ -41,13 +39,73 @@ class Game
         dealer_cards << @sabot.draw
         player_cards << @sabot.draw
 
-        is_first_move = true
-
         player_hand = Hand.new(player_cards)
         puts "\tPlayer has: #{player_hand}"
         dealer_hand = Hand.new(dealer_cards)
         puts "\tDealer has: #{dealer_hand}"
 
+        check_for_blackjacks(player_hand, dealer_hand, player_bet)
+    
+        # Check for split
+
+        # Check for insurance
+     
+        if @hand_status == :completed
+            return
+        end
+
+        # Player's turn
+        @hand_status = :player_playing
+        while @hand_status == :player_playing
+            if player_hand.is_bust?
+                finish_hand(player_bet, :bust)
+                return
+            end
+            player_action = BasicStrategy.recommendation(player_hand, dealer_cards.first)
+            
+            # Check for double
+            if player_cards.size == 2 && @rules.can_double(player_hand) && player_action == "double"
+                new_card = @sabot.draw
+                player_cards << new_card
+                player_bet *= 2
+                puts "\tPlayer doubles! Player hits #{new_card} and has: #{player_hand}." 
+                @hand_status = :player_completed
+            elsif player_action == "hit"
+                new_card = @sabot.draw
+                player_cards << new_card
+                puts "\tPlayer hits #{new_card} and has: #{player_hand}"
+            elsif player_action == "stand"
+                puts "\tPlayer stands"
+                @hand_status = :player_completed
+            else
+                raise "Unknown player action #{player_action}"
+            end 
+        end
+
+        # Dealer's turn
+        while @hand_status != :completed
+            dealer_new_card = @sabot.draw
+            puts "\tDealer hits #{dealer_new_card}"
+            dealer_cards << dealer_new_card 
+            puts "\tDealer has: #{dealer_hand}"
+            if dealer_hand.is_bust?
+                finish_hand(player_bet, :dealer_bust)
+            elsif dealer_hand.highest_value.between?(17,21) || dealer_hand.lowest_value.between?(17,21)
+                if dealer_hand.highest_value > player_hand.highest_value
+                    finish_hand(player_bet, :lose)
+                elsif dealer_hand.highest_value == player_hand.highest_value
+                    finish_hand(player_bet, :draw)
+                else
+                    finish_hand(player_bet, :win)
+                end
+            else
+                # hands continue to be played
+            end
+        end
+
+    end
+
+    def check_for_blackjacks(player_hand, dealer_hand, player_bet)
         # Check for dealer blackjack
         if dealer_hand.is_blackjack?
             if player_hand.is_blackjack?
@@ -60,55 +118,6 @@ class Game
         # Check for player blackjack
         if player_hand.is_blackjack?
             finish_hand(player_bet, :blackjack)
-        end
-            
-        # Check for insurance
-
-        # Check for double
-
-        # Check for split
-        while @hand_status != :completed
-            if !is_first_move
-                player_hand = Hand.new(player_cards)
-                puts "\tPlayer has: #{player_hand}"
-            end
-            is_first_move = false
-
-            if player_hand.is_bust?
-                finish_hand(player_bet, :bust)
-                break
-            end
-            
-            player_action = BasicStrategy.recommendation(player_hand, dealer_cards.first)
-            if player_action == "hit"
-                new_card = @sabot.draw
-                puts "\tPlayer hits #{new_card}"
-                player_cards << new_card
-            elsif player_action == "stand"
-                puts "\tPlayer stands"
-                # Dealer plays
-                while @hand_status != :completed
-                    dealer_new_card = @sabot.draw
-                    puts "\tDealer hits #{dealer_new_card}"
-                    dealer_cards << dealer_new_card 
-                    puts "\tDealer has: #{dealer_hand}"
-                    if dealer_hand.is_bust?
-                        finish_hand(player_bet, :dealer_bust)
-                    elsif dealer_hand.highest_value.between?(17,21) || dealer_hand.lowest_value.between?(17,21)
-                        if dealer_hand.highest_value > player_hand.highest_value
-                            finish_hand(player_bet, :lose)
-                        elsif dealer_hand.highest_value == player_hand.highest_value
-                            finish_hand(player_bet, :draw)
-                        else
-                            finish_hand(player_bet, :win)
-                        end
-                    else
-                        # hands continue to be played
-                    end
-                end
-            else
-                raise "Unknown player action #{player_action}"
-            end 
         end
     end
 

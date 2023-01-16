@@ -1,3 +1,5 @@
+# TODO: interface for rules
+
 class EuropeanRules
     def can_double(hand)
         # Players can double when the sum of the first two cards
