@@ -45,32 +45,12 @@ class Game
         puts "\tDealer has: #{dealer_hand}"
 
         check_for_blackjacks(player_hand, dealer_hand, player_bet)
-    
-        # Check for insurance
-     
+         
         if @hand_status == :completed
             return
         end
 
-        # Check for split
-        should_split = player_hand.is_pair? && BasicStrategy.recommendation(player_hand, dealer_cards.first) == :split
-        if should_split
-            puts "Player splits"
-            first_seat_cards = [player_cards[0]]
-            first_seat_cards << @sabot.draw
-            first_seat_hand = Hand.new(first_seat_cards)
-            puts "\tPlayer has: #{first_seat_hand}"
-            play_seat(first_seat_cards, first_seat_hand, dealer_cards, dealer_hand, player_bet)
-           
-            second_seat_cards = [player_cards[1]]
-            second_seat_cards << @sabot.draw
-            second_seat_hand = Hand.new(second_seat_cards)
-            puts "\tPlayer has: #{second_seat_hand}"
-            play_seat(second_seat_cards, second_seat_hand, dealer_cards, dealer_hand, player_bet)
-        else
-            play_seat(player_cards, player_hand, dealer_cards, dealer_hand, player_bet)
-            
-        end
+        play_seat(player_cards, player_hand, dealer_cards, dealer_hand, player_bet)
         @hand_status = :completed
     end
 
@@ -91,7 +71,7 @@ class Game
             player_action = BasicStrategy.recommendation(player_hand, dealer_cards.first)
             
             # Check for double
-            if player_cards.size == 2 && @rules.can_double(player_hand) && player_action == :double
+            if @rules.can_double(player_hand) && player_action == :double
                 new_card = @sabot.draw
                 player_cards << new_card
                 player_bet *= 2
@@ -101,6 +81,8 @@ class Game
                 new_card = @sabot.draw
                 player_cards << new_card
                 puts "\tPlayer hits #{new_card} and has: #{player_hand}"
+            elsif player_action == :split
+                play_split_seat(player_cards, player_hand, dealer_cards, dealer_hand, player_bet)
             elsif player_action == :stand
                 puts "\tPlayer stands"
                 @hand_status = :player_completed
@@ -145,6 +127,27 @@ class Game
         if player_hand.is_blackjack?
             finish_hand(player_bet, :blackjack)
         end
+    end
+
+    def play_split_seat(
+        player_cards,
+        player_hand,
+        dealer_cards,
+        dealer_hand,
+        player_bet
+    )
+        puts "Player splits"
+        first_seat_cards = [player_cards[0]]
+        first_seat_cards << @sabot.draw
+        first_seat_hand = Hand.new(first_seat_cards)
+        puts "\tPlayer has: #{first_seat_hand}"
+        play_seat(first_seat_cards, first_seat_hand, dealer_cards, dealer_hand, player_bet)
+    
+        second_seat_cards = [player_cards[1]]
+        second_seat_cards << @sabot.draw
+        second_seat_hand = Hand.new(second_seat_cards)
+        puts "\tPlayer has: #{second_seat_hand}"
+        play_seat(second_seat_cards, second_seat_hand, dealer_cards, dealer_hand, player_bet)
     end
 
     def finish_hand(player_bet, hand_result)

@@ -23,6 +23,14 @@ class Hand
         value.is_a?(Array) ? value.max : value
     end
 
+    def best_value
+        if value.is_a?(Array)
+             value.max > 21 ? value.min : value.max
+        else
+            value
+        end
+    end
+
     def lowest_value
         value.is_a?(Array) ? value.min : value
     end
@@ -46,6 +54,10 @@ class Hand
     def pair_highest_value
         raise "pair_highest_value can only be called on pairs" if !is_pair?
         return @cards[0].bj_highest_value
+    end
+
+    def size
+        @cards.size
     end
 
     def to_s
