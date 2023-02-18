@@ -44,11 +44,12 @@ class Deck
 end
 
 class Sabot
-    attr_reader :cards
+    attr_reader :cards, :current_count
 
     def initialize(n_decks = 6)
         @n_decks = n_decks
         @cards = []
+        @current_count = 0
         build_sabot
     end
 
@@ -56,17 +57,25 @@ class Sabot
         if @cards.empty?
             puts "No more cards in the Sabot, adding decks and shuffling..."
             build_sabot
-            @cards.pop
-        else
-            @cards.pop
         end
+        card = @cards.pop
+        update_count(card)
+        return card
     end
 
     def to_s
-        @cards.join(", ")
+        "Sabot initialized with #{@n_decks.size} decks, has #{@cards.size} cards left"
     end
 
     private
+    def update_count(card)
+        if card.bj_highest_value > 9
+            @current_count -= 1
+        elsif card.bj_highest_value < 7
+            @current_count += 1
+        end
+    end
+
     def build_sabot
         @cards = []
         @n_decks.times do
@@ -74,6 +83,7 @@ class Sabot
             @cards += deck.cards
         end
         @cards.shuffle!
+        @current_count = 0
         puts "Sabot built with #{@n_decks} decks and a total of #{@cards.size} cards"
     end
 end

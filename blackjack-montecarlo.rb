@@ -9,11 +9,17 @@ require_relative 'rules.rb'
 # to evaluate different strategies.
 ##
 
+# TODOs:
+# - write tests for other classes with gpt?
+# - look for some refactor improvements and get rid of all TODOs
+# - move player bet as part of strategy: low - medium - max
+
 class Game
-    def initialize
+    def initialize(rules = EuropeanRules.new)
         @sabot = Sabot.new
         @stack = 100
-        @rules = EuropeanRules.new
+        @rules = rules
+        @strategy = BasicStrategy.new(rules)
         @n_hands = 100
         @hand_status = :not_started
     end
@@ -30,9 +36,10 @@ class Game
     private
     def play_hand(hand_counter)
         player_bet = 10
-        puts "Hand ##{hand_counter}"
+        puts "Hand ##{hand_counter}. Card count is: #{@sabot.current_count}"
         puts "\tPlayer bets #{player_bet}$"
     
+        # TODO: refactor this to avoid having cards and keep only a hand
         player_cards = []
         dealer_cards = []
         player_cards << @sabot.draw
@@ -45,7 +52,7 @@ class Game
         puts "\tDealer has: #{dealer_hand}"
 
         check_for_blackjacks(player_hand, dealer_hand, player_bet)
-         
+
         if @hand_status == :completed
             return
         end
@@ -61,14 +68,15 @@ class Game
         dealer_hand,
         player_bet
     )
-        # Player's turn
+        
+    # Player's turn
         @hand_status = :player_playing
         while @hand_status == :player_playing
             if player_hand.is_bust?
                 finish_hand(player_bet, :bust)
                 return
             end
-            player_action = BasicStrategy.recommendation(player_hand, dealer_cards.first)
+            player_action = @strategy.recommendation(player_hand, dealer_cards.first)
             
             # Check for double
             if @rules.can_double(player_hand) && player_action == :double

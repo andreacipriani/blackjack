@@ -1,20 +1,26 @@
-class BasicStrategy   
-    def self.recommendation(hand, dealer_card)
-        # If hand is a Pair, evaluate differently considering split
+# Reference: https://www.blackjackapprenticeship.com/wp-content/uploads/2018/08/BJA_Basic_Strategy.jpg
+
+class BasicStrategy
+    def initialize(rules)
+        @rules = rules
+    end
+
+    def recommendation(hand, dealer_card)
+        # If hand is a Pair, evaluate differently, considering split
         if hand.is_pair?
-            return self.pair_recommendation(hand, dealer_card)
+            return pair_recommendation(hand, dealer_card)
         end
-        # If the hand has an Ace, it is a soft total
+        # If the hand contains an Ace, it is a soft total
         if hand.has_ace?
-            self.soft_recommendation(hand, dealer_card)
+            soft_recommendation(hand, dealer_card)
         else
-            self.hard_recommendation(hand, dealer_card)
+            hard_recommendation(hand, dealer_card)
         end
     end
 
     private
 
-    def self.pair_recommendation(hand, dealer_card)
+    def pair_recommendation(hand, dealer_card)
         case hand.pair_highest_value
         when 11 then :split
         when 10 then :stand
@@ -59,7 +65,7 @@ class BasicStrategy
         end
     end
 
-    def self.hard_recommendation(hand, dealer_card)
+    def hard_recommendation(hand, dealer_card)
         case hand.value
         when 17..21 then
             :stand
@@ -81,11 +87,11 @@ class BasicStrategy
             if (10..11).include?(dealer_card.bj_highest_value)
                 :hit
             else
-                self.double_fallback_hit(hand)
+                double_fallback_hit(hand)
             end
         when 9 then
             if (3..6).include?(dealer_card.bj_highest_value)
-                self.double_fallback_hit(hand)
+                double_fallback_hit(hand)
             else
                 :hit
             end     
@@ -94,19 +100,19 @@ class BasicStrategy
         end
     end
 
-    def self.double_fallback_hit(hand)
-        if self.can_double(hand)
+    def double_fallback_hit(hand)
+        if can_double(hand)
             :double
         else
             :hit
         end
     end
 
-    def self.can_double(hand)
-        EuropeanRules.new.can_double(hand) # TODO: don't repeat
+    def can_double(hand)
+        @rules.can_double(hand)
     end 
 
-    def self.soft_recommendation(hand, dealer_card)
+    def soft_recommendation(hand, dealer_card)
         case hand.best_value
         when 19..21 then
             :stand
