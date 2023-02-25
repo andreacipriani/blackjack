@@ -10,8 +10,6 @@ require_relative 'rules.rb'
 ##
 
 # TODOs:
-# - write tests for other classes with gpt?
-# - look for some refactor improvements and get rid of all TODOs
 # - move player bet as part of strategy: low - medium - max
 
 class Game
@@ -39,16 +37,10 @@ class Game
         puts "Hand ##{hand_counter}. Card count is: #{@sabot.current_count}"
         puts "\tPlayer bets #{player_bet}$"
     
-        # TODO: refactor this to avoid having cards and keep only a hand
-        player_cards = []
-        dealer_cards = []
-        player_cards << @sabot.draw
-        dealer_cards << @sabot.draw
-        player_cards << @sabot.draw
-
-        player_hand = Hand.new(player_cards)
+        player_hand = Hand.new([@sabot.draw])
+        dealer_hand = Hand.new(@sabot.draw)
+        player_hand.add_card(@sabot.draw)
         puts "\tPlayer has: #{player_hand}"
-        dealer_hand = Hand.new(dealer_cards)
         puts "\tDealer has: #{dealer_hand}"
 
         check_for_blackjacks(player_hand, dealer_hand, player_bet)
@@ -57,12 +49,11 @@ class Game
             return
         end
 
-        play_seat(player_cards, player_hand, dealer_cards, dealer_hand, player_bet)
+        play_seat(player_hand, dealer_cards, dealer_hand, player_bet)
         @hand_status = :completed
     end
 
     def play_seat(
-        player_cards,
         player_hand,
         dealer_cards,
         dealer_hand,
@@ -81,13 +72,13 @@ class Game
             # Check for double
             if @rules.can_double(player_hand) && player_action == :double
                 new_card = @sabot.draw
-                player_cards << new_card
+                player_hand.add_card(new_card)
                 player_bet *= 2
                 puts "\tPlayer doubles! Player hits #{new_card} and has: #{player_hand}." 
                 @hand_status = :player_completed
             elsif player_action == :hit
                 new_card = @sabot.draw
-                player_cards << new_card
+                player_hand.add_card(new_card)
                 puts "\tPlayer hits #{new_card} and has: #{player_hand}"
             elsif player_action == :split
                 play_split_seat(player_cards, player_hand, dealer_cards, dealer_hand, player_bet)
@@ -99,6 +90,7 @@ class Game
             end 
         end
 
+        IN PROGRESS REFACTOR NOT USING PLAYER CARDS BUT PLAYER HAND INSTEDA
         # Dealer's turn
         while @hand_status != :completed
             dealer_new_card = @sabot.draw
