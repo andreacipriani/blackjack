@@ -38,7 +38,7 @@ class Game
         puts "\tPlayer bets #{player_bet}$"
     
         player_hand = Hand.new([@sabot.draw])
-        dealer_hand = Hand.new(@sabot.draw)
+        dealer_hand = Hand.new([@sabot.draw])
         player_hand.add_card(@sabot.draw)
         puts "\tPlayer has: #{player_hand}"
         puts "\tDealer has: #{dealer_hand}"
@@ -49,13 +49,12 @@ class Game
             return
         end
 
-        play_seat(player_hand, dealer_cards, dealer_hand, player_bet)
+        play_seat(player_hand, dealer_hand, player_bet)
         @hand_status = :completed
     end
 
     def play_seat(
         player_hand,
-        dealer_cards,
         dealer_hand,
         player_bet
     )
@@ -67,7 +66,7 @@ class Game
                 finish_hand(player_bet, :bust)
                 return
             end
-            player_action = @strategy.recommendation(player_hand, dealer_cards.first)
+            player_action = @strategy.recommendation(player_hand, dealer_hand.cards.first)
             
             # Check for double
             if @rules.can_double(player_hand) && player_action == :double
@@ -81,7 +80,7 @@ class Game
                 player_hand.add_card(new_card)
                 puts "\tPlayer hits #{new_card} and has: #{player_hand}"
             elsif player_action == :split
-                play_split_seat(player_cards, player_hand, dealer_cards, dealer_hand, player_bet)
+                play_split_seat(player_hand, dealer_hand, player_bet)
             elsif player_action == :stand
                 puts "\tPlayer stands"
                 @hand_status = :player_completed
@@ -90,12 +89,11 @@ class Game
             end 
         end
 
-        IN PROGRESS REFACTOR NOT USING PLAYER CARDS BUT PLAYER HAND INSTEDA
         # Dealer's turn
         while @hand_status != :completed
             dealer_new_card = @sabot.draw
             puts "\tDealer hits #{dealer_new_card}"
-            dealer_cards << dealer_new_card 
+            dealer_hand.add_card(dealer_new_card)
             puts "\tDealer has: #{dealer_hand}"
             if dealer_hand.is_bust?
                 finish_hand(player_bet, :dealer_bust)
@@ -130,24 +128,20 @@ class Game
     end
 
     def play_split_seat(
-        player_cards,
         player_hand,
-        dealer_cards,
         dealer_hand,
         player_bet
     )
         puts "Player splits"
-        first_seat_cards = [player_cards[0]]
-        first_seat_cards << @sabot.draw
-        first_seat_hand = Hand.new(first_seat_cards)
+        first_seat_new_card = @sabot.draw
+        first_seat_hand = Hand.new([player_hand.cards[0], first_seat_new_card])
         puts "\tPlayer has: #{first_seat_hand}"
-        play_seat(first_seat_cards, first_seat_hand, dealer_cards, dealer_hand, player_bet)
+        play_seat(first_seat_hand, dealer_hand, player_bet)
     
-        second_seat_cards = [player_cards[1]]
-        second_seat_cards << @sabot.draw
-        second_seat_hand = Hand.new(second_seat_cards)
+        second_seat_new_card = @sabot.draw
+        second_seat_hand = Hand.new([player_hand.cards[1], second_seat_new_card])
         puts "\tPlayer has: #{second_seat_hand}"
-        play_seat(second_seat_cards, second_seat_hand, dealer_cards, dealer_hand, player_bet)
+        play_seat(second_seat_hand, dealer_hand, player_bet)
     end
 
     def finish_hand(player_bet, hand_result)
