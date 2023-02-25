@@ -22,7 +22,17 @@ class Card
     end
     
     def to_s
-        "#{@value}#{suit}"
+        "#{@value}#{symbol(suit)}"
+    end
+
+    private
+    def symbol(suit)
+        case suit
+            when :D then "♦"
+            when :S then "♠"
+            when :C then "♣"
+            when :H then "♥"
+        end
     end
 end	
 

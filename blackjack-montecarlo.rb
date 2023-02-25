@@ -18,7 +18,7 @@ class Game
         @stack = 100
         @rules = rules
         @strategy = BasicStrategy.new(rules)
-        @n_hands = 100
+        @n_hands = 10
         @hand_status = :not_started
     end
     

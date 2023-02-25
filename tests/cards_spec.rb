@@ -72,7 +72,7 @@ describe Card do
 
   describe "#to_s" do
     it "returns a string representation of the card" do
-      expect(card.to_s).to eq("AC")
+      expect(card.to_s).to eq("A♣")
     end
   end
 end

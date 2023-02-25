@@ -5,31 +5,32 @@ describe Hand do
     let(:card1) { Card.new(:C, "A") }
     let(:card2) { Card.new(:D, "5") }
     let(:card3) { Card.new(:S, "K") }
-    let(:hand) { Hand.new([card1, card2]) }
+    let(:card4) { Card.new(:S, "J") }
+    let(:soft_hand) { Hand.new([card1, card2]) }
+    let(:hand) { Hand.new([card2, card3]) }
   
     describe "#initialize" do
       it "initializes with a set of cards" do
-        expect(hand.cards).to eq([card1, card2])
+        expect(hand.cards).to eq([card2, card3])
       end
     end
   
     describe "#add_card" do
       it "adds a card to the hand" do
-        hand.add_card(card3)
-        expect(hand.cards).to eq([card1, card2, card3])
+        soft_hand.add_card(card3)
+        expect(soft_hand.cards).to eq([card1, card2, card3])
       end
     end
   
     describe "#value" do
       context "when the hand contains an Ace" do
         it "calculates a soft total (Ace can be worth 1 or 11)" do
-          expect(hand.value).to eq([6, 16])
+          expect(soft_hand.value).to eq([6, 16])
         end
       end
   
       context "when the hand does not contain an Ace" do
         it "calculates a hard total" do
-          hand = Hand.new([card2, card3])
           expect(hand.value).to eq(15)
         end
       end
@@ -37,7 +38,8 @@ describe Hand do
   
     describe "#highest_value" do
       it "returns the highest possible value of the hand" do
-        expect(hand.highest_value).to eq(16)
+        expect(soft_hand.highest_value).to eq(16)
+        expect(hand.highest_value).to eq(15)
       end
     end
   
@@ -45,22 +47,21 @@ describe Hand do
       context "when the hand has a soft total" do
         context "when the highest value is less than or equal to 21" do
           it "returns the highest value" do
-            expect(hand.best_value).to eq(16)
+            expect(soft_hand.best_value).to eq(16)
           end
         end
   
         context "when the highest value is greater than 21" do
           it "returns the lowest value" do
-            card4 = Card.new(:S, "A")
-            hand.add_card(card4)
-            expect(hand.best_value).to eq(7)
+            card4 = Card.new(:S, "10")
+            soft_hand.add_card(card4)
+            expect(soft_hand.best_value).to eq(16)
           end
         end
       end
   
       context "when the hand has a hard total" do
         it "returns the value" do
-          hand = Hand.new([card2, card3])
           expect(hand.best_value).to eq(15)
         end
       end
@@ -68,7 +69,7 @@ describe Hand do
   
     describe "#lowest_value" do
       it "returns the lowest possible value of the hand" do
-        expect(hand.lowest_value).to eq(6)
+        expect(soft_hand.lowest_value).to eq(6)
       end
     end
 
@@ -92,9 +93,11 @@ describe Hand do
           describe "#is_bust?" do
             context "when the hand has a soft total and both values are greater than 21" do
               it "returns true" do
-                card4 = Card.new(:S, "A")
-                hand.add_card(card4)
-                expect(hand.is_bust?).to be true
+                card4 = Card.new(:S, "10")
+                card5 = Card.new(:C, "6")
+                soft_hand.add_card(card4)
+                soft_hand.add_card(card5)
+                expect(soft_hand.is_bust?).to be true
               end
             end
         
@@ -153,23 +156,26 @@ describe Hand do
           describe "#to_s" do
             context "when the hand is a blackjack" do
               it "returns a string representation of the hand with Blackjack!" do
+                card1 = Card.new(:D, "J")
                 card2 = Card.new(:D, "A")
                 hand = Hand.new([card1, card2])
-                expect(hand.to_s).to eq("A♣, A♦ = Blackjack!")
+                expect(hand.to_s).to eq("J♦, A♦ = Blackjack!")
               end
             end
         
             context "when the hand is a bust" do
               it "returns a string representation of the hand with Busted!" do
-                card3 = Card.new(:C, "A")
+                card1 = Card.new(:D, "10")
+                card2 = Card.new(:C, "K")
+                card3 = Card.new(:D, "2")
                 hand = Hand.new([card1, card2, card3])
-                expect(hand.to_s).to eq("A♣, 5♦, A♠ = Busted!")
+                expect(hand.to_s).to eq("10♦, K♣, 2♦ = Busted!")
               end
             end
         
             context "when the hand has a normal value" do
               it "returns a string representation of the hand with the value" do
-                expect(hand.to_s).to eq("A♣, 5♦ = [6, 16]")
+                expect(hand.to_s).to eq("5♦, K♠ = 15")
               end
             end
           end
