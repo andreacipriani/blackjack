@@ -18,14 +18,12 @@ class Game
         @stack = 100
         @rules = rules
         @strategy = BasicStrategy.new(rules)
-        @n_hands = 10
-        @hand_status = :not_started
+        @n_hands = 100
     end
     
     def play
         hand_counter = 1
         @n_hands.times do
-            @hand_status = :in_progress
             play_hand(hand_counter)
             hand_counter += 1
         end
@@ -34,138 +32,181 @@ class Game
     private
     def play_hand(hand_counter)
         player_bet = 10
+        seat = 1
         puts "Hand ##{hand_counter}. Card count is: #{@sabot.current_count}"
-        puts "\tPlayer bets #{player_bet}$"
+        puts "\t#{player(seat)} bets #{player_bet}$"
     
         player_hand = Hand.new([@sabot.draw])
         dealer_hand = Hand.new([@sabot.draw])
         player_hand.add_card(@sabot.draw)
-        puts "\tPlayer has: #{player_hand}"
+        puts "\t#{player(seat)} has: #{player_hand}"
         puts "\tDealer has: #{dealer_hand}"
 
-        check_for_blackjacks(player_hand, dealer_hand, player_bet)
-
-        if @hand_status == :completed
+        if check_for_blackjacks(seat, player_hand, dealer_hand, player_bet)
             return
         end
 
-        play_seat(player_hand, dealer_hand, player_bet)
-        @hand_status = :completed
+        action = play_seat(seat, player_hand, dealer_hand, player_bet)
+        if action == :stand
+            play_dealer(player_hand, dealer_hand, player_bet)
+        end
+        should_evaluate = action != :split
+        if should_evaluate
+            evaluate_seat(seat, player_hand, dealer_hand, player_bet)
+        end
+    end
+
+    def player(seat, multiple_seats = false)
+        if multiple_seats
+            "Player on seat #{seat}"
+        else
+            "Player"
+        end
     end
 
     def play_seat(
+        seat,
         player_hand,
         dealer_hand,
-        player_bet
-    )
-        
-    # Player's turn
-        @hand_status = :player_playing
-        while @hand_status == :player_playing
+        player_bet,
+        multiple_seats = false
+    ) 
+        # Player's turn
+        finished_playing = false
+        while !finished_playing
             if player_hand.is_bust?
-                finish_hand(player_bet, :bust)
-                return
+                finished_playing = true
+                return :bust
             end
             player_action = @strategy.recommendation(player_hand, dealer_hand.cards.first)
-            
-            # Check for double
-            if @rules.can_double(player_hand) && player_action == :double
+            if player_action == :double
                 new_card = @sabot.draw
                 player_hand.add_card(new_card)
                 player_bet *= 2
-                puts "\tPlayer doubles! Player hits #{new_card} and has: #{player_hand}." 
-                @hand_status = :player_completed
+                puts "\t#{player(seat, multiple_seats)} doubles! Player hits #{new_card} and has: #{player_hand}."
             elsif player_action == :hit
                 new_card = @sabot.draw
                 player_hand.add_card(new_card)
-                puts "\tPlayer hits #{new_card} and has: #{player_hand}"
+                puts "\t#{player(seat, multiple_seats)} hits #{new_card} and has: #{player_hand}"
             elsif player_action == :split
-                play_split_seat(player_hand, dealer_hand, player_bet)
+                puts "\t#{player(seat, multiple_seats)} splits!"
+                play_split_seat(seat, player_hand, dealer_hand, player_bet)
+                return :split
             elsif player_action == :stand
-                puts "\tPlayer stands"
-                @hand_status = :player_completed
+                puts "\t#{player(seat, multiple_seats)} stands"
+                finished_playing = true
+                return :stand
             else
                 raise "Unknown player action #{player_action}"
             end 
         end
+        return :playing
+    end
 
-        # Dealer's turn
-        while @hand_status != :completed
+    def play_dealer(
+        player_hand,
+        dealer_hand,
+        player_bet
+    )
+        puts "\tDealer's turn"
+        while (dealer_hand.best_value.between?(17,21) || dealer_hand.is_bust?) == false
             dealer_new_card = @sabot.draw
-            puts "\tDealer hits #{dealer_new_card}"
             dealer_hand.add_card(dealer_new_card)
-            puts "\tDealer has: #{dealer_hand}"
-            if dealer_hand.is_bust?
-                finish_hand(player_bet, :dealer_bust)
-            elsif dealer_hand.highest_value.between?(17,21) || dealer_hand.lowest_value.between?(17,21)
-                if dealer_hand.highest_value > player_hand.highest_value
-                    finish_hand(player_bet, :lose)
-                elsif dealer_hand.highest_value == player_hand.highest_value
-                    finish_hand(player_bet, :draw)
-                else
-                    finish_hand(player_bet, :win)
-                end
-            else
-                # hands continue to be played
-            end
+            puts "\tDealer hits #{dealer_new_card} and has: #{dealer_hand}"
+            
         end
     end
 
-    def check_for_blackjacks(player_hand, dealer_hand, player_bet)
+    def check_for_blackjacks(seat, player_hand, dealer_hand, player_bet)
         # Check for dealer blackjack
         if dealer_hand.is_blackjack?
             if player_hand.is_blackjack?
-                finish_hand(player_bet, :double_blackjack)
+                finish_seat(seat, player_bet, :double_blackjack)
+                return true
             else
-                finish_hand(player_bet, :dealer_blackjack)
+                finish_seat(seat, player_bet, :dealer_blackjack)
+                return true
             end
         end
 
         # Check for player blackjack
         if player_hand.is_blackjack?
-            finish_hand(player_bet, :blackjack)
+            finish_seat(seat, player_bet, :blackjack)
+            return true
         end
+        return false
     end
 
     def play_split_seat(
+        seat,
         player_hand,
         dealer_hand,
         player_bet
     )
-        puts "Player splits"
-        first_seat_new_card = @sabot.draw
-        first_seat_hand = Hand.new([player_hand.cards[0], first_seat_new_card])
-        puts "\tPlayer has: #{first_seat_hand}"
-        play_seat(first_seat_hand, dealer_hand, player_bet)
-    
-        second_seat_new_card = @sabot.draw
-        second_seat_hand = Hand.new([player_hand.cards[1], second_seat_new_card])
-        puts "\tPlayer has: #{second_seat_hand}"
-        play_seat(second_seat_hand, dealer_hand, player_bet)
+        first_seat_hand = Hand.new([player_hand.cards[0]])
+        second_seat_hand = Hand.new([player_hand.cards[1]])
+
+        first_action = play_seat(seat, first_seat_hand, dealer_hand, player_bet, true)    
+        second_action = play_seat(seat + 1, second_seat_hand, dealer_hand, player_bet, true)
+        
+        if first_action == :stand ||second_action == :stand
+            play_dealer(second_seat_hand, dealer_hand, player_bet)
+        end
+        evaluate_seat(seat, first_seat_hand, dealer_hand, player_bet, true)
+        evaluate_seat(seat + 1, second_seat_hand, dealer_hand, player_bet, true)
     end
 
-    def finish_hand(player_bet, hand_result)
+    def evaluate_seat(
+        seat,
+        seat_hand, 
+        dealer_hand,
+        player_bet,
+        multiple_seats = false
+    )
+        if seat_hand.is_bust?
+            finish_seat(seat, player_bet, :bust, multiple_seats)
+            return
+        end
+        if dealer_hand.is_bust?
+            finish_seat(seat, player_bet, :dealer_bust, multiple_seats)
+            return
+        else
+            if dealer_hand.highest_value > seat_hand.best_value
+                finish_seat(seat, player_bet, :lose, multiple_seats)
+            elsif dealer_hand.highest_value == seat_hand.best_value
+                finish_seat(seat, player_bet, :draw, multiple_seats)
+            else
+                finish_seat(seat, player_bet, :win, multiple_seats)
+            end
+        end
+    end
+
+    def finish_seat(
+        seat,
+        player_bet,
+        hand_result,
+        multiple_seats = false
+    )
         if hand_result == :blackjack
-            puts "\tBlackjack! Player wins."
+            puts "\tBlackjack! #{player(seat, multiple_seats)} wins."
         elsif hand_result == :win
-            puts "\tPlayer wins!"
+            puts "\t#{player(seat, multiple_seats)} wins!"
         elsif hand_result == :draw
-            puts "\tIt's a draw!"
+            puts "\t#{player(seat, multiple_seats)} has a draw!"
         elsif hand_result == :double_blackjack
-            puts "\tBoth player and dealer have a Blackjack, it's a draw!"
+            puts "\tBoth #{player(multiple_seats)} and dealer have a Blackjack, it's a draw!"
         elsif hand_result == :bust
-            puts "\tPlayer busted. Dealer wins!"
+            puts "\t#{player(seat, multiple_seats)} busted. Dealer wins!"
         elsif hand_result == :dealer_bust
-            puts "\tDealer busted. Player wins!"
+            puts "\tDealer busted. #{player(multiple_seats)} wins!"
         elsif hand_result == :dealer_blackjack
-            puts "\tBlackjack! Dealer wins."
+            puts "\tBlackjack! Dealer wins against #{player(seat, multiple_seats)}}"
         elsif hand_result == :lose
-            puts "\tDealer wins!"
+            puts "\tDealer wins against #{player(seat, multiple_seats)}."
         else
             raise("unknown hand_result #{hand_result}")
         end
         update_stack(player_bet, hand_result)
-        @hand_status = :completed
     end
     
     def update_stack(player_bet, hand_result)

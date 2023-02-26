@@ -6,12 +6,14 @@ class BasicStrategy
     end
 
     def recommendation(hand, dealer_card)
+        if hand.cards.size == 1
+            return :hit # In case of splits you start with one card
+        end
         # If hand is a Pair, evaluate differently, considering split
         if hand.is_pair?
             return pair_recommendation(hand, dealer_card)
         end
-        # If the hand contains an Ace, it is a soft total
-        if hand.has_ace?
+        if hand.is_soft?
             soft_recommendation(hand, dealer_card)
         else
             hard_recommendation(hand, dealer_card)
@@ -48,7 +50,7 @@ class BasicStrategy
             if [10, 11].include?(dealer_card.bj_highest_value)
                 :hit
             else
-                :double
+                double_fallback_hit(hand)
             end
         when 4 then
             if [5, 6].include?(dealer_card.bj_highest_value)
@@ -66,7 +68,7 @@ class BasicStrategy
     end
 
     def hard_recommendation(hand, dealer_card)
-        case hand.value
+        case hand.best_value
         when 17..21 then
             :stand
         when 13..16 then

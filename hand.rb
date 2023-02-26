@@ -34,6 +34,10 @@ class Hand
     def lowest_value
         value.is_a?(Array) ? value.min : value
     end
+
+    def is_soft?
+        has_ace? && highest_value <= 21 # 10 7 A is not soft
+    end
     
     def is_blackjack?
         @cards.size == 2 && highest_value == 21
