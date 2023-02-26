@@ -1,4 +1,4 @@
-# Reference: https://www.blackjackapprenticeship.com/wp-content/uploads/2018/08/BJA_Basic_Strategy.jpg
+# Reference: https://en.wikipedia.org/wiki/Blackjack#Basic_strategy
 
 class BasicStrategy
     def initialize(rules)
