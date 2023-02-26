@@ -41,14 +41,15 @@ class Game
         player_hand.add_card(@sabot.draw)
         puts "\t#{player(seat)} has: #{player_hand}"
         puts "\tDealer has: #{dealer_hand}"
+        dealer_second_card = @sabot.draw # Dealer's second card is hidden
 
-        if check_for_blackjacks(seat, player_hand, dealer_hand, player_bet)
+        if check_for_blackjacks(seat, player_hand, dealer_hand, dealer_second_card, player_bet)
             return
         end
 
-        action = play_seat(seat, player_hand, dealer_hand, player_bet)
+        action = play_seat(seat, player_hand, dealer_hand, dealer_second_card, player_bet)
         if action == :stand
-            play_dealer(player_hand, dealer_hand, player_bet)
+            play_dealer(player_hand, dealer_hand, dealer_second_card, player_bet)
         end
         should_evaluate = action != :split
         if should_evaluate
@@ -68,6 +69,7 @@ class Game
         seat,
         player_hand,
         dealer_hand,
+        dealer_second_card,
         player_bet,
         multiple_seats = false
     ) 
@@ -90,7 +92,7 @@ class Game
                 puts "\t#{player(seat, multiple_seats)} hits #{new_card} and has: #{player_hand}"
             elsif player_action == :split
                 puts "\t#{player(seat, multiple_seats)} splits!"
-                play_split_seat(seat, player_hand, dealer_hand, player_bet)
+                play_split_seat(seat, player_hand, dealer_hand, dealer_second_card, player_bet)
                 return :split
             elsif player_action == :stand
                 puts "\t#{player(seat, multiple_seats)} stands"
@@ -106,24 +108,29 @@ class Game
     def play_dealer(
         player_hand,
         dealer_hand,
+        dealer_second_card,
         player_bet
     )
         puts "\tDealer's turn"
+        has_used_second_card = false
         while (dealer_hand.best_value.between?(17,21) || dealer_hand.is_bust?) == false
-            dealer_new_card = @sabot.draw
+            dealer_new_card = has_used_second_card ? dealer_second_card : @sabot.draw
+            has_used_second_card = true
             dealer_hand.add_card(dealer_new_card)
             puts "\tDealer hits #{dealer_new_card} and has: #{dealer_hand}"
-            
         end
     end
 
-    def check_for_blackjacks(seat, player_hand, dealer_hand, player_bet)
+    def check_for_blackjacks(seat, player_hand, dealer_hand, dealer_second_card, player_bet)
         # Check for dealer blackjack
-        if dealer_hand.is_blackjack?
+        dealer_hand_with_second_card = Hand.new([dealer_hand.cards.first, dealer_second_card])
+        if dealer_hand_with_second_card.is_blackjack?
             if player_hand.is_blackjack?
+                puts("\tDealer reveals card #{dealer_second_card}")
                 finish_seat(seat, player_bet, :double_blackjack)
                 return true
             else
+                puts("\tDealer reveals card #{dealer_second_card}")
                 finish_seat(seat, player_bet, :dealer_blackjack)
                 return true
             end
@@ -141,16 +148,17 @@ class Game
         seat,
         player_hand,
         dealer_hand,
+        dealer_second_card,
         player_bet
     )
         first_seat_hand = Hand.new([player_hand.cards[0]])
         second_seat_hand = Hand.new([player_hand.cards[1]])
 
-        first_action = play_seat(seat, first_seat_hand, dealer_hand, player_bet, true)    
-        second_action = play_seat(seat + 1, second_seat_hand, dealer_hand, player_bet, true)
+        first_action = play_seat(seat, first_seat_hand, dealer_hand, dealer_second_card, player_bet, true)    
+        second_action = play_seat(seat + 1, second_seat_hand, dealer_hand, dealer_second_card, player_bet, true)
         
         if first_action == :stand ||second_action == :stand
-            play_dealer(second_seat_hand, dealer_hand, player_bet)
+            play_dealer(second_seat_hand, dealer_hand, dealer_second_card, player_bet)
         end
         evaluate_seat(seat, first_seat_hand, dealer_hand, player_bet, true)
         evaluate_seat(seat + 1, second_seat_hand, dealer_hand, player_bet, true)
@@ -200,7 +208,7 @@ class Game
         elsif hand_result == :dealer_bust
             puts "\tDealer busted. #{player(multiple_seats)} wins!"
         elsif hand_result == :dealer_blackjack
-            puts "\tBlackjack! Dealer wins against #{player(seat, multiple_seats)}}"
+            puts "\tBlackjack! Dealer wins against #{player(seat, multiple_seats)}"
         elsif hand_result == :lose
             puts "\tDealer wins against #{player(seat, multiple_seats)}."
         else
