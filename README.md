@@ -1,4 +1,4 @@
-A Montecarlo simulation for evaluating Blackjack strategies.
+Evaluating Blackjack strategies with Montecarlo simulations.
 
 - Implements Blackjack [Basic Strategy](https://en.wikipedia.org/wiki/Blackjack#Basic_strategy)
 
