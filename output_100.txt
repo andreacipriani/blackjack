@@ -1,0 +1,950 @@
+Running Blackjack Monte Carlo Simulation
+Sabot built with 6 decks and a total of 312 cards
+Player starts with 100$
+Hand #1. Card count is: 0
+	Player bets 10$
+	Player has: 6♣, 7♥ = 13
+	Dealer has: K♠
+	Player hits J♦ and has: 6♣, 7♥, J♦ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 90$
+Hand #2. Card count is: -1
+	Player bets 10$
+	Player has: 5♠, 9♠ = 14
+	Dealer has: 5♥
+	Player stands
+	Dealer's turn
+	Dealer hits A♦ and has: 5♥, A♦ = [6, 16]
+	Dealer hits 10♥ and has: 5♥, A♦, 10♥ = [16, 26]
+	Dealer hits 10♥ and has: 5♥, A♦, 10♥, 10♥ = Busted!
+	Dealer busted. Player wins!
+	Player stack is now 100$
+Hand #3. Card count is: -1
+	Player bets 10$
+	Player has: K♦, 10♣ = 20
+	Dealer has: 10♥
+	Player stands
+	Dealer's turn
+	Dealer hits Q♥ and has: 10♥, Q♥ = 20
+	Player has a draw!
+	Player stack is now 100$
+Hand #4. Card count is: -6
+	Player bets 10$
+	Player has: 9♥, 4♦ = 13
+	Dealer has: 6♥
+	Player stands
+	Dealer's turn
+	Dealer hits 8♥ and has: 6♥, 8♥ = 14
+	Dealer hits K♦ and has: 6♥, 8♥, K♦ = Busted!
+	Dealer busted. Player wins!
+	Player stack is now 110$
+Hand #5. Card count is: -5
+	Player bets 10$
+	Player has: 3♥, 10♦ = 13
+	Dealer has: J♣
+	Player hits 2♣ and has: 3♥, 10♦, 2♣ = 15
+	Player hits K♠ and has: 3♥, 10♦, 2♣, K♠ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 100$
+Hand #6. Card count is: -5
+	Player bets 10$
+	Player has: 6♠, 3♦ = 9
+	Dealer has: K♥
+	Player hits 5♣ and has: 6♠, 3♦, 5♣ = 14
+	Player hits 7♠ and has: 6♠, 3♦, 5♣, 7♠ = 21
+	Player stands
+	Dealer's turn
+	Dealer hits A♠ and has: K♥, A♠ = Blackjack!
+	Player has a draw!
+	Player stack is now 100$
+Hand #7. Card count is: -3
+	Player bets 10$
+	Player has: 5♠, 7♣ = 12
+	Dealer has: A♦
+	Player hits 9♦ and has: 5♠, 7♣, 9♦ = 21
+	Player stands
+	Dealer's turn
+	Dealer hits Q♣ and has: A♦, Q♣ = Blackjack!
+	Player has a draw!
+	Player stack is now 100$
+Hand #8. Card count is: -3
+	Player bets 10$
+	Player has: 6♣, J♥ = 16
+	Dealer has: J♠
+	Player hits 5♥ and has: 6♣, J♥, 5♥ = 21
+	Player stands
+	Dealer's turn
+	Dealer hits 5♣ and has: J♠, 5♣ = 15
+	Dealer hits 3♠ and has: J♠, 5♣, 3♠ = 18
+	Player wins!
+	Player stack is now 110$
+Hand #9. Card count is: -1
+	Player bets 10$
+	Player has: 8♠, 10♦ = 18
+	Dealer has: K♣
+	Player stands
+	Dealer's turn
+	Dealer hits 7♦ and has: K♣, 7♦ = 17
+	Player wins!
+	Player stack is now 120$
+Hand #10. Card count is: -4
+	Player bets 10$
+	Player has: 7♥, 3♣ = 10
+	Dealer has: Q♠
+	Player hits 3♥ and has: 7♥, 3♣, 3♥ = 13
+	Player hits A♦ and has: 7♥, 3♣, 3♥, A♦ = [14, 24]
+	Player hits A♠ and has: 7♥, 3♣, 3♥, A♦, A♠ = [15, 25]
+	Player hits 8♥ and has: 7♥, 3♣, 3♥, A♦, A♠, 8♥ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 110$
+Hand #11. Card count is: -6
+	Player bets 10$
+	Player has: 10♥, 4♠ = 14
+	Dealer has: 8♥
+	Player hits 5♣ and has: 10♥, 4♠, 5♣ = 19
+	Player stands
+	Dealer's turn
+	Dealer hits K♥ and has: 8♥, K♥ = 18
+	Player wins!
+	Player stack is now 120$
+Hand #12. Card count is: -5
+	Player bets 10$
+	Player has: A♣, Q♣ = Blackjack!
+	Dealer has: 2♠
+	Blackjack! Player wins.
+	Player stack is now 135.0$
+Hand #13. Card count is: -5
+	Player bets 10$
+	Player has: A♦, K♣ = Blackjack!
+	Dealer has: 5♦
+	Blackjack! Player wins.
+	Player stack is now 150.0$
+Hand #14. Card count is: -5
+	Player bets 10$
+	Player has: 9♣, Q♠ = 19
+	Dealer has: 9♣
+	Player stands
+	Dealer's turn
+	Dealer hits K♥ and has: 9♣, K♥ = 19
+	Player has a draw!
+	Player stack is now 150.0$
+Hand #15. Card count is: -6
+	Player bets 10$
+	Player has: 6♦, 8♦ = 14
+	Dealer has: 8♠
+	Player hits Q♦ and has: 6♦, 8♦, Q♦ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 140.0$
+Hand #16. Card count is: -7
+	Player bets 10$
+	Player has: A♠, 10♠ = Blackjack!
+	Dealer has: 10♣
+	Blackjack! Player wins.
+	Player stack is now 155.0$
+Hand #17. Card count is: -9
+	Player bets 10$
+	Player has: 4♣, 9♥ = 13
+	Dealer has: 6♠
+	Player stands
+	Dealer's turn
+	Dealer hits 7♣ and has: 6♠, 7♣ = 13
+	Dealer hits 4♣ and has: 6♠, 7♣, 4♣ = 17
+	Dealer wins against Player.
+	Player stack is now 145.0$
+Hand #18. Card count is: -6
+	Player bets 10$
+	Player has: 9♠, J♣ = 19
+	Dealer has: 4♦
+	Player stands
+	Dealer's turn
+	Dealer hits 7♦ and has: 4♦, 7♦ = 11
+	Dealer hits 4♥ and has: 4♦, 7♦, 4♥ = 15
+	Dealer hits 4♥ and has: 4♦, 7♦, 4♥, 4♥ = 19
+	Player has a draw!
+	Player stack is now 145.0$
+Hand #19. Card count is: -5
+	Player bets 10$
+	Player has: 10♦, Q♥ = 20
+	Dealer has: 6♠
+	Player stands
+	Dealer's turn
+	Dealer hits A♣ and has: 6♠, A♣ = [7, 17]
+	Player wins!
+	Player stack is now 155.0$
+Hand #20. Card count is: -7
+	Player bets 10$
+	Player has: 3♣, Q♦ = 13
+	Dealer has: Q♠
+	Player hits K♣ and has: 3♣, Q♦, K♣ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 145.0$
+Hand #21. Card count is: -8
+	Player bets 10$
+	Player has: 6♣, 8♣ = 14
+	Dealer has: A♣
+	Dealer reveals card 10♠
+	Blackjack! Dealer wins against Player
+	Player stack is now 135.0$
+Hand #22. Card count is: -9
+	Player bets 10$
+	Player has: K♥, 5♥ = 15
+	Dealer has: 2♠
+	Player stands
+	Dealer's turn
+	Dealer hits 10♥ and has: 2♠, 10♥ = 12
+	Dealer hits 6♥ and has: 2♠, 10♥, 6♥ = 18
+	Dealer wins against Player.
+	Player stack is now 125.0$
+Hand #23. Card count is: -8
+	Player bets 10$
+	Player has: 10♥, K♦ = 20
+	Dealer has: A♥
+	Player stands
+	Dealer's turn
+	Dealer hits 9♦ and has: A♥, 9♦ = [10, 20]
+	Player has a draw!
+	Player stack is now 125.0$
+Hand #24. Card count is: -11
+	Player bets 10$
+	Player has: J♦, 3♦ = 13
+	Dealer has: J♥
+	Player hits 8♣ and has: J♦, 3♦, 8♣ = 21
+	Player stands
+	Dealer's turn
+	Dealer hits 2♣ and has: J♥, 2♣ = 12
+	Dealer hits 5♠ and has: J♥, 2♣, 5♠ = 17
+	Player wins!
+	Player stack is now 135.0$
+Hand #25. Card count is: -10
+	Player bets 10$
+	Player has: Q♥, 2♥ = 12
+	Dealer has: 6♦
+	Player stands
+	Dealer's turn
+	Dealer hits 8♥ and has: 6♦, 8♥ = 14
+	Dealer hits 5♣ and has: 6♦, 8♥, 5♣ = 19
+	Dealer wins against Player.
+	Player stack is now 125.0$
+Hand #26. Card count is: -8
+	Player bets 10$
+	Player has: K♠, 3♣ = 13
+	Dealer has: 10♠
+	Player hits J♠ and has: K♠, 3♣, J♠ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 115.0$
+Hand #27. Card count is: -9
+	Player bets 10$
+	Player has: 4♦, A♠ = [5, 15]
+	Dealer has: A♥
+	Player hits 3♦ and has: 4♦, A♠, 3♦ = [8, 18]
+	Player hits 6♦ and has: 4♦, A♠, 3♦, 6♦ = [14, 24]
+	Player hits 2♣ and has: 4♦, A♠, 3♦, 6♦, 2♣ = [16, 26]
+	Player hits 10♠ and has: 4♦, A♠, 3♦, 6♦, 2♣, 10♠ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 105.0$
+Hand #28. Card count is: -7
+	Player bets 10$
+	Player has: J♠, 4♠ = 14
+	Dealer has: 9♣
+	Player hits 8♦ and has: J♠, 4♠, 8♦ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 95.0$
+Hand #29. Card count is: -6
+	Player bets 10$
+	Player has: 2♠, 10♣ = 12
+	Dealer has: 6♥
+	Player stands
+	Dealer's turn
+	Dealer hits 8♦ and has: 6♥, 8♦ = 14
+	Dealer hits K♠ and has: 6♥, 8♦, K♠ = Busted!
+	Dealer busted. Player wins!
+	Player stack is now 105.0$
+Hand #30. Card count is: -6
+	Player bets 10$
+	Player has: 8♣, A♣ = [9, 19]
+	Dealer has: 3♥
+	Player stands
+	Dealer's turn
+	Dealer hits 4♠ and has: 3♥, 4♠ = 7
+	Dealer hits Q♣ and has: 3♥, 4♠, Q♣ = 17
+	Player wins!
+	Player stack is now 115.0$
+Hand #31. Card count is: -6
+	Player bets 10$
+	Player has: 9♦, J♦ = 19
+	Dealer has: Q♦
+	Player stands
+	Dealer's turn
+	Dealer hits 3♦ and has: Q♦, 3♦ = 13
+	Dealer hits 7♣ and has: Q♦, 3♦, 7♣ = 20
+	Dealer wins against Player.
+	Player stack is now 105.0$
+Hand #32. Card count is: -7
+	Player bets 10$
+	Player has: J♣, 7♠ = 17
+	Dealer has: 7♦
+	Player stands
+	Dealer's turn
+	Dealer hits 2♣ and has: 7♦, 2♣ = 9
+	Dealer hits J♣ and has: 7♦, 2♣, J♣ = 19
+	Dealer wins against Player.
+	Player stack is now 95.0$
+Hand #33. Card count is: -8
+	Player bets 10$
+	Player has: A♣, 6♦ = [7, 17]
+	Dealer has: K♣
+	Player hits 8♠ and has: A♣, 6♦, 8♠ = [15, 25]
+	Player hits A♦ and has: A♣, 6♦, 8♠, A♦ = [16, 26]
+	Player hits K♥ and has: A♣, 6♦, 8♠, A♦, K♥ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 85.0$
+Hand #34. Card count is: -12
+	Player bets 10$
+	Player has: 6♣, 8♠ = 14
+	Dealer has: 5♦
+	Player stands
+	Dealer's turn
+	Dealer hits 3♣ and has: 5♦, 3♣ = 8
+	Dealer hits K♦ and has: 5♦, 3♣, K♦ = 18
+	Dealer wins against Player.
+	Player stack is now 75.0$
+Hand #35. Card count is: -10
+	Player bets 10$
+	Player has: 6♦, Q♥ = 16
+	Dealer has: J♥
+	Player hits J♦ and has: 6♦, Q♥, J♦ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 65.0$
+Hand #36. Card count is: -12
+	Player bets 10$
+	Player has: 4♥, 2♥ = 6
+	Dealer has: 3♥
+	Player hits 4♠ and has: 4♥, 2♥, 4♠ = 10
+	Player hits 5♦ and has: 4♥, 2♥, 4♠, 5♦ = 15
+	Player stands
+	Dealer's turn
+	Dealer hits 6♠ and has: 3♥, 6♠ = 9
+	Dealer hits 2♥ and has: 3♥, 6♠, 2♥ = 11
+	Dealer hits 2♥ and has: 3♥, 6♠, 2♥, 2♥ = 13
+	Dealer hits 2♥ and has: 3♥, 6♠, 2♥, 2♥, 2♥ = 15
+	Dealer hits 2♥ and has: 3♥, 6♠, 2♥, 2♥, 2♥, 2♥ = 17
+	Dealer wins against Player.
+	Player stack is now 55.0$
+Hand #37. Card count is: -5
+	Player bets 10$
+	Player has: 3♣, 2♦ = 5
+	Dealer has: 3♥
+	Player hits 10♦ and has: 3♣, 2♦, 10♦ = 15
+	Player stands
+	Dealer's turn
+	Dealer hits J♣ and has: 3♥, J♣ = 13
+	Dealer hits 7♦ and has: 3♥, J♣, 7♦ = 20
+	Dealer wins against Player.
+	Player stack is now 45.0$
+Hand #38. Card count is: -4
+	Player bets 10$
+	Player has: 6♥, A♠ = [7, 17]
+	Dealer has: 2♥
+	Player hits Q♠ and has: 6♥, A♠, Q♠ = [17, 27]
+	Player stands
+	Dealer's turn
+	Dealer hits 3♠ and has: 2♥, 3♠ = 5
+	Dealer hits Q♦ and has: 2♥, 3♠, Q♦ = 15
+	Dealer hits Q♦ and has: 2♥, 3♠, Q♦, Q♦ = Busted!
+	Dealer busted. Player wins!
+	Player stack is now 55.0$
+Hand #39. Card count is: -4
+	Player bets 10$
+	Player has: 8♠, Q♦ = 18
+	Dealer has: 6♠
+	Player stands
+	Dealer's turn
+	Dealer hits A♥ and has: 6♠, A♥ = [7, 17]
+	Player wins!
+	Player stack is now 65.0$
+Hand #40. Card count is: -5
+	Player bets 10$
+	Player has: 5♥, 2♦ = 7
+	Dealer has: 7♠
+	Player hits 4♣ and has: 5♥, 2♦, 4♣ = 11
+	Player hits Q♣ and has: 5♥, 2♦, 4♣, Q♣ = 21
+	Player stands
+	Dealer's turn
+	Dealer hits 4♥ and has: 7♠, 4♥ = 11
+	Dealer hits 9♥ and has: 7♠, 4♥, 9♥ = 20
+	Player wins!
+	Player stack is now 75.0$
+Hand #41. Card count is: -2
+	Player bets 10$
+	Player has: K♦, 5♦ = 15
+	Dealer has: Q♥
+	Player hits J♥ and has: K♦, 5♦, J♥ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 65.0$
+Hand #42. Card count is: -4
+	Player bets 10$
+	Player has: 7♦, J♦ = 17
+	Dealer has: 9♦
+	Player stands
+	Dealer's turn
+	Dealer hits 2♠ and has: 9♦, 2♠ = 11
+	Dealer hits 2♦ and has: 9♦, 2♠, 2♦ = 13
+	Dealer hits 2♦ and has: 9♦, 2♠, 2♦, 2♦ = 15
+	Dealer hits 2♦ and has: 9♦, 2♠, 2♦, 2♦, 2♦ = 17
+	Player has a draw!
+	Player stack is now 65.0$
+Hand #43. Card count is: -3
+	Player bets 10$
+	Player has: A♣, Q♦ = Blackjack!
+	Dealer has: 4♠
+	Blackjack! Player wins.
+	Player stack is now 80.0$
+Hand #44. Card count is: -5
+	Player bets 10$
+	Player has: 6♥, 8♣ = 14
+	Dealer has: 6♦
+	Player stands
+	Dealer's turn
+	Dealer hits A♥ and has: 6♦, A♥ = [7, 17]
+	Dealer wins against Player.
+	Player stack is now 70.0$
+Hand #45. Card count is: -3
+	Player bets 10$
+	Player has: 6♣, 5♦ = 11
+	Dealer has: 3♠
+	Player doubles! Player hits 3♠ and has: 6♣, 5♦, 3♠ = 14.
+	Player stands
+	Dealer's turn
+	Dealer hits 8♠ and has: 3♠, 8♠ = 11
+	Dealer hits 7♥ and has: 3♠, 8♠, 7♥ = 18
+	Dealer wins against Player.
+	Player stack is now 60.0$
+Hand #46. Card count is: 1
+	Player bets 10$
+	Player has: 4♦, 9♣ = 13
+	Dealer has: K♠
+	Player hits 2♥ and has: 4♦, 9♣, 2♥ = 15
+	Player hits 9♠ and has: 4♦, 9♣, 2♥, 9♠ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 50.0$
+Hand #47. Card count is: 2
+	Player bets 10$
+	Player has: 7♦, A♥ = [8, 18]
+	Dealer has: 4♥
+	Player stands
+	Dealer's turn
+	Dealer hits 4♦ and has: 4♥, 4♦ = 8
+	Dealer hits 4♣ and has: 4♥, 4♦, 4♣ = 12
+	Dealer hits 4♣ and has: 4♥, 4♦, 4♣, 4♣ = 16
+	Dealer hits 4♣ and has: 4♥, 4♦, 4♣, 4♣, 4♣ = 20
+	Dealer wins against Player.
+	Player stack is now 40.0$
+Hand #48. Card count is: 4
+	Player bets 10$
+	Player has: 8♣, 7♥ = 15
+	Dealer has: 4♠
+	Player stands
+	Dealer's turn
+	Dealer hits 9♥ and has: 4♠, 9♥ = 13
+	Dealer hits 2♥ and has: 4♠, 9♥, 2♥ = 15
+	Dealer hits 2♥ and has: 4♠, 9♥, 2♥, 2♥ = 17
+	Dealer wins against Player.
+	Player stack is now 30.0$
+Hand #49. Card count is: 6
+	Player bets 10$
+	Player has: Q♠, 5♣ = 15
+	Dealer has: 9♦
+	Player hits A♦ and has: Q♠, 5♣, A♦ = [16, 26]
+	Player hits K♣ and has: Q♠, 5♣, A♦, K♣ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 20.0$
+Hand #50. Card count is: 5
+	Player bets 10$
+	Player has: 4♥, 3♥ = 7
+	Dealer has: 7♠
+	Player hits 2♦ and has: 4♥, 3♥, 2♦ = 9
+	Player hits 3♠ and has: 4♥, 3♥, 2♦, 3♠ = 12
+	Player hits K♠ and has: 4♥, 3♥, 2♦, 3♠, K♠ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 10.0$
+Hand #51. Card count is: 7
+	Player bets 10$
+	Player has: 5♠, 3♦ = 8
+	Dealer has: 9♣
+	Player hits 4♥ and has: 5♠, 3♦, 4♥ = 12
+	Player hits J♦ and has: 5♠, 3♦, 4♥, J♦ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 0.0$
+Hand #52. Card count is: 8
+	Player bets 10$
+	Player has: 7♣, Q♥ = 17
+	Dealer has: 5♣
+	Player stands
+	Dealer's turn
+	Dealer hits 8♦ and has: 5♣, 8♦ = 13
+	Dealer hits 9♦ and has: 5♣, 8♦, 9♦ = Busted!
+	Dealer busted. Player wins!
+	Player stack is now 10.0$
+Hand #53. Card count is: 8
+	Player bets 10$
+	Player has: 2♦, 2♠ = 4
+	Dealer has: J♣
+	Player hits A♥ and has: 2♦, 2♠, A♥ = [5, 15]
+	Player hits 10♣ and has: 2♦, 2♠, A♥, 10♣ = [15, 25]
+	Player hits 9♠ and has: 2♦, 2♠, A♥, 10♣, 9♠ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 0.0$
+Hand #54. Card count is: 6
+	Player bets 10$
+	Player has: 4♣, 9♣ = 13
+	Dealer has: J♠
+	Player hits 7♥ and has: 4♣, 9♣, 7♥ = 20
+	Player stands
+	Dealer's turn
+	Dealer hits 7♣ and has: J♠, 7♣ = 17
+	Player wins!
+	Player stack is now 10.0$
+Hand #55. Card count is: 6
+	Player bets 10$
+	Player has: 10♣, A♠ = Blackjack!
+	Dealer has: 4♦
+	Blackjack! Player wins.
+	Player stack is now 25.0$
+Hand #56. Card count is: 5
+	Player bets 10$
+	Player has: 2♣, 10♠ = 12
+	Dealer has: Q♣
+	Player hits 7♠ and has: 2♣, 10♠, 7♠ = 19
+	Player stands
+	Dealer's turn
+	Dealer hits 9♠ and has: Q♣, 9♠ = 19
+	Player has a draw!
+	Player stack is now 25.0$
+Hand #57. Card count is: 3
+	Player bets 10$
+	Player has: 4♣, J♥ = 14
+	Dealer has: 7♥
+	Player hits 8♣ and has: 4♣, J♥, 8♣ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 15.0$
+Hand #58. Card count is: 2
+	Player bets 10$
+No more cards in the Sabot, adding decks and shuffling...
+Sabot built with 6 decks and a total of 312 cards
+	Player has: 10♦, 10♠ = 20
+	Dealer has: Q♠
+	Player stands
+	Dealer's turn
+	Dealer hits 9♦ and has: Q♠, 9♦ = 19
+	Player wins!
+	Player stack is now 25.0$
+Hand #59. Card count is: 0
+	Player bets 10$
+	Player has: Q♦, Q♥ = 20
+	Dealer has: 9♣
+	Player stands
+	Dealer's turn
+	Dealer hits 10♦ and has: 9♣, 10♦ = 19
+	Player wins!
+	Player stack is now 35.0$
+Hand #60. Card count is: -3
+	Player bets 10$
+	Player has: J♥, J♦ = 20
+	Dealer has: 6♠
+	Player stands
+	Dealer's turn
+	Dealer hits 6♣ and has: 6♠, 6♣ = 12
+	Dealer hits 6♥ and has: 6♠, 6♣, 6♥ = 18
+	Player wins!
+	Player stack is now 45.0$
+Hand #61. Card count is: -2
+	Player bets 10$
+	Player has: J♣, 3♥ = 13
+	Dealer has: A♥
+	Player hits 2♥ and has: J♣, 3♥, 2♥ = 15
+	Player hits 9♦ and has: J♣, 3♥, 2♥, 9♦ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 35.0$
+Hand #62. Card count is: -1
+	Player bets 10$
+	Player has: 7♥, 7♦ = 14
+	Dealer has: K♠
+	Player hits 6♣ and has: 7♥, 7♦, 6♣ = 20
+	Player stands
+	Dealer's turn
+	Dealer hits 4♠ and has: K♠, 4♠ = 14
+	Dealer hits 4♣ and has: K♠, 4♠, 4♣ = 18
+	Player wins!
+	Player stack is now 45.0$
+Hand #63. Card count is: 1
+	Player bets 10$
+	Player has: 6♦, 6♣ = 12
+	Dealer has: 10♥
+	Dealer reveals card A♣
+	Blackjack! Dealer wins against Player
+	Player stack is now 35.0$
+Hand #64. Card count is: 1
+	Player bets 10$
+	Player has: 4♣, Q♠ = 14
+	Dealer has: 2♣
+	Player stands
+	Dealer's turn
+	Dealer hits 3♥ and has: 2♣, 3♥ = 5
+	Dealer hits A♥ and has: 2♣, 3♥, A♥ = [6, 16]
+	Dealer hits A♥ and has: 2♣, 3♥, A♥, A♥ = [7, 17]
+	Dealer wins against Player.
+	Player stack is now 25.0$
+Hand #65. Card count is: 2
+	Player bets 10$
+	Player has: 6♦, 6♥ = 12
+	Dealer has: Q♠
+	Player hits J♥ and has: 6♦, 6♥, J♥ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now 15.0$
+Hand #66. Card count is: 3
+	Player bets 10$
+	Player has: 9♥, 10♣ = 19
+	Dealer has: K♦
+	Dealer reveals card A♦
+	Blackjack! Dealer wins against Player
+	Player stack is now 5.0$
+Hand #67. Card count is: 0
+	Player bets 10$
+	Player has: 4♠, J♠ = 14
+	Dealer has: J♠
+	Player hits Q♠ and has: 4♠, J♠, Q♠ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now -5.0$
+Hand #68. Card count is: -1
+	Player bets 10$
+	Player has: J♠, 9♥ = 19
+	Dealer has: 8♦
+	Player stands
+	Dealer's turn
+	Dealer hits 10♦ and has: 8♦, 10♦ = 18
+	Player wins!
+	Player stack is now 5.0$
+Hand #69. Card count is: -4
+	Player bets 10$
+	Player has: 7♠, 2♦ = 9
+	Dealer has: 2♠
+	Player hits 6♦ and has: 7♠, 2♦, 6♦ = 15
+	Player stands
+	Dealer's turn
+	Dealer hits 9♣ and has: 2♠, 9♣ = 11
+	Dealer hits 7♥ and has: 2♠, 9♣, 7♥ = 18
+	Dealer wins against Player.
+	Player stack is now -5.0$
+Hand #70. Card count is: -1
+	Player bets 10$
+	Player has: 6♠, 5♦ = 11
+	Dealer has: 7♠
+	Player doubles! Player hits 9♠ and has: 6♠, 5♦, 9♠ = 20.
+	Player stands
+	Dealer's turn
+	Dealer hits 2♦ and has: 7♠, 2♦ = 9
+	Dealer hits 4♠ and has: 7♠, 2♦, 4♠ = 13
+	Dealer hits 4♠ and has: 7♠, 2♦, 4♠, 4♠ = 17
+	Player wins!
+	Player stack is now 5.0$
+Hand #71. Card count is: 3
+	Player bets 10$
+	Player has: 3♦, 5♦ = 8
+	Dealer has: 2♦
+	Player hits 5♦ and has: 3♦, 5♦, 5♦ = 13
+	Player stands
+	Dealer's turn
+	Dealer hits 7♦ and has: 2♦, 7♦ = 9
+	Dealer hits 5♠ and has: 2♦, 7♦, 5♠ = 14
+	Dealer hits 5♠ and has: 2♦, 7♦, 5♠, 5♠ = 19
+	Dealer wins against Player.
+	Player stack is now -5.0$
+Hand #72. Card count is: 8
+	Player bets 10$
+	Player has: 9♦, 10♣ = 19
+	Dealer has: Q♥
+	Player stands
+	Dealer's turn
+	Dealer hits J♣ and has: Q♥, J♣ = 20
+	Dealer wins against Player.
+	Player stack is now -15.0$
+Hand #73. Card count is: 5
+	Player bets 10$
+	Player has: 5♣, 8♠ = 13
+	Dealer has: Q♣
+	Player hits K♥ and has: 5♣, 8♠, K♥ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now -25.0$
+Hand #74. Card count is: 3
+	Player bets 10$
+	Player has: 3♣, 6♣ = 9
+	Dealer has: 2♠
+	Player hits J♠ and has: 3♣, 6♣, J♠ = 19
+	Player stands
+	Dealer's turn
+	Dealer hits 2♦ and has: 2♠, 2♦ = 4
+	Dealer hits 4♦ and has: 2♠, 2♦, 4♦ = 8
+	Dealer hits 4♦ and has: 2♠, 2♦, 4♦, 4♦ = 12
+	Dealer hits 4♦ and has: 2♠, 2♦, 4♦, 4♦, 4♦ = 16
+	Dealer hits 4♦ and has: 2♠, 2♦, 4♦, 4♦, 4♦, 4♦ = 20
+	Dealer wins against Player.
+	Player stack is now -35.0$
+Hand #75. Card count is: 7
+	Player bets 10$
+	Player has: 5♥, 7♠ = 12
+	Dealer has: 9♥
+	Player hits A♦ and has: 5♥, 7♠, A♦ = [13, 23]
+	Player hits 7♦ and has: 5♥, 7♠, A♦, 7♦ = [20, 30]
+	Player stands
+	Dealer's turn
+	Dealer hits 5♥ and has: 9♥, 5♥ = 14
+	Dealer hits 6♣ and has: 9♥, 5♥, 6♣ = 20
+	Player has a draw!
+	Player stack is now -35.0$
+Hand #76. Card count is: 9
+	Player bets 10$
+	Player has: 3♦, 5♣ = 8
+	Dealer has: 6♥
+	Player hits Q♦ and has: 3♦, 5♣, Q♦ = 18
+	Player stands
+	Dealer's turn
+	Dealer hits 7♠ and has: 6♥, 7♠ = 13
+	Dealer hits 3♣ and has: 6♥, 7♠, 3♣ = 16
+	Dealer hits 3♣ and has: 6♥, 7♠, 3♣, 3♣ = 19
+	Dealer wins against Player.
+	Player stack is now -45.0$
+Hand #77. Card count is: 12
+	Player bets 10$
+	Player has: J♥, 8♠ = 18
+	Dealer has: 8♣
+	Player stands
+	Dealer's turn
+	Dealer hits 2♥ and has: 8♣, 2♥ = 10
+	Dealer hits 10♦ and has: 8♣, 2♥, 10♦ = 20
+	Dealer wins against Player.
+	Player stack is now -55.0$
+Hand #78. Card count is: 11
+	Player bets 10$
+	Player has: A♠, 10♠ = Blackjack!
+	Dealer has: Q♥
+	Blackjack! Player wins.
+	Player stack is now -40.0$
+Hand #79. Card count is: 7
+	Player bets 10$
+	Player has: A♦, 10♣ = Blackjack!
+	Dealer has: 6♥
+	Blackjack! Player wins.
+	Player stack is now -25.0$
+Hand #80. Card count is: 7
+	Player bets 10$
+	Player has: 3♥, 8♠ = 11
+	Dealer has: 5♣
+	Player doubles! Player hits A♠ and has: 3♥, 8♠, A♠ = [12, 22].
+	Player stands
+	Dealer's turn
+	Dealer hits 5♠ and has: 5♣, 5♠ = 10
+	Dealer hits 4♥ and has: 5♣, 5♠, 4♥ = 14
+	Dealer hits 4♥ and has: 5♣, 5♠, 4♥, 4♥ = 18
+	Dealer wins against Player.
+	Player stack is now -35.0$
+Hand #81. Card count is: 10
+	Player bets 10$
+	Player has: K♠, 2♥ = 12
+	Dealer has: 8♣
+	Player hits 5♠ and has: K♠, 2♥, 5♠ = 17
+	Player stands
+	Dealer's turn
+	Dealer hits 2♣ and has: 8♣, 2♣ = 10
+	Dealer hits J♦ and has: 8♣, 2♣, J♦ = 20
+	Dealer wins against Player.
+	Player stack is now -45.0$
+Hand #82. Card count is: 11
+	Player bets 10$
+	Player has: 5♣, 8♥ = 13
+	Dealer has: 7♥
+	Player hits A♦ and has: 5♣, 8♥, A♦ = [14, 24]
+	Player hits 6♠ and has: 5♣, 8♥, A♦, 6♠ = [20, 30]
+	Player stands
+	Dealer's turn
+	Dealer hits 9♣ and has: 7♥, 9♣ = 16
+	Dealer hits 8♥ and has: 7♥, 9♣, 8♥ = Busted!
+	Dealer busted. Player wins!
+	Player stack is now -35.0$
+Hand #83. Card count is: 12
+	Player bets 10$
+	Player has: 2♠, 5♣ = 7
+	Dealer has: 6♠
+	Player hits 7♣ and has: 2♠, 5♣, 7♣ = 14
+	Player stands
+	Dealer's turn
+	Dealer hits K♦ and has: 6♠, K♦ = 16
+	Dealer hits 6♥ and has: 6♠, K♦, 6♥ = Busted!
+	Dealer busted. Player wins!
+	Player stack is now -25.0$
+Hand #84. Card count is: 15
+	Player bets 10$
+	Player has: 9♣, 8♦ = 17
+	Dealer has: 9♦
+	Player stands
+	Dealer's turn
+	Dealer hits 10♣ and has: 9♦, 10♣ = 19
+	Dealer wins against Player.
+	Player stack is now -35.0$
+Hand #85. Card count is: 14
+	Player bets 10$
+	Player has: 4♠, 2♥ = 6
+	Dealer has: Q♣
+	Player hits 9♠ and has: 4♠, 2♥, 9♠ = 15
+	Player hits Q♠ and has: 4♠, 2♥, 9♠, Q♠ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now -45.0$
+Hand #86. Card count is: 13
+	Player bets 10$
+	Player has: K♣, 7♦ = 17
+	Dealer has: 8♦
+	Player stands
+	Dealer's turn
+	Dealer hits 4♦ and has: 8♦, 4♦ = 12
+	Dealer hits A♠ and has: 8♦, 4♦, A♠ = [13, 23]
+	Dealer hits A♠ and has: 8♦, 4♦, A♠, A♠ = [14, 24]
+	Dealer hits A♠ and has: 8♦, 4♦, A♠, A♠, A♠ = [15, 25]
+	Dealer hits A♠ and has: 8♦, 4♦, A♠, A♠, A♠, A♠ = [16, 26]
+	Dealer hits A♠ and has: 8♦, 4♦, A♠, A♠, A♠, A♠, A♠ = [17, 27]
+	Dealer wins against Player.
+	Player stack is now -55.0$
+Hand #87. Card count is: 12
+	Player bets 10$
+	Player has: 7♠, J♣ = 17
+	Dealer has: A♥
+	Player stands
+	Dealer's turn
+	Dealer hits 9♥ and has: A♥, 9♥ = [10, 20]
+	Dealer wins against Player.
+	Player stack is now -65.0$
+Hand #88. Card count is: 11
+	Player bets 10$
+	Player has: 8♠, 6♠ = 14
+	Dealer has: A♠
+	Dealer reveals card J♠
+	Blackjack! Dealer wins against Player
+	Player stack is now -75.0$
+Hand #89. Card count is: 10
+	Player bets 10$
+	Player has: Q♦, 3♠ = 13
+	Dealer has: 2♦
+	Player stands
+	Dealer's turn
+	Dealer hits 10♥ and has: 2♦, 10♥ = 12
+	Dealer hits 3♣ and has: 2♦, 10♥, 3♣ = 15
+	Dealer hits 3♣ and has: 2♦, 10♥, 3♣, 3♣ = 18
+	Dealer wins against Player.
+	Player stack is now -85.0$
+Hand #90. Card count is: 11
+	Player bets 10$
+	Player has: 10♦, 9♥ = 19
+	Dealer has: 4♦
+	Player stands
+	Dealer's turn
+	Dealer hits 9♦ and has: 4♦, 9♦ = 13
+	Dealer hits 2♠ and has: 4♦, 9♦, 2♠ = 15
+	Dealer hits 2♠ and has: 4♦, 9♦, 2♠, 2♠ = 17
+	Player wins!
+	Player stack is now -75.0$
+Hand #91. Card count is: 12
+	Player bets 10$
+	Player has: 4♥, 5♠ = 9
+	Dealer has: 6♦
+	Player doubles! Player hits 8♣ and has: 4♥, 5♠, 8♣ = 17.
+	Player stands
+	Dealer's turn
+	Dealer hits 4♣ and has: 6♦, 4♣ = 10
+	Dealer hits 4♥ and has: 6♦, 4♣, 4♥ = 14
+	Dealer hits 4♥ and has: 6♦, 4♣, 4♥, 4♥ = 18
+	Dealer wins against Player.
+	Player stack is now -85.0$
+Hand #92. Card count is: 17
+	Player bets 10$
+	Player has: 9♥, 5♣ = 14
+	Dealer has: 10♦
+	Player hits 10♠ and has: 9♥, 5♣, 10♠ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now -95.0$
+Hand #93. Card count is: 17
+	Player bets 10$
+	Player has: 10♦, 5♥ = 15
+	Dealer has: 5♥
+	Player stands
+	Dealer's turn
+	Dealer hits K♣ and has: 5♥, K♣ = 15
+	Dealer hits J♣ and has: 5♥, K♣, J♣ = Busted!
+	Dealer busted. Player wins!
+	Player stack is now -85.0$
+Hand #94. Card count is: 16
+	Player bets 10$
+	Player has: K♦, 8♥ = 18
+	Dealer has: A♥
+	Player stands
+	Dealer's turn
+	Dealer hits 7♥ and has: A♥, 7♥ = [8, 18]
+	Player has a draw!
+	Player stack is now -85.0$
+Hand #95. Card count is: 15
+	Player bets 10$
+	Player has: A♥, 5♠ = [6, 16]
+	Dealer has: 10♥
+	Player hits Q♣ and has: A♥, 5♠, Q♣ = [16, 26]
+	Player hits J♦ and has: A♥, 5♠, Q♣, J♦ = Busted!
+	Player busted. Dealer wins!
+	Player stack is now -95.0$
+Hand #96. Card count is: 12
+	Player bets 10$
+	Player has: 3♠, 2♣ = 5
+	Dealer has: 10♠
+	Player hits 3♠ and has: 3♠, 2♣, 3♠ = 8
+	Player hits Q♣ and has: 3♠, 2♣, 3♠, Q♣ = 18
+	Player stands
+	Dealer's turn
+	Dealer hits 9♦ and has: 10♠, 9♦ = 19
+	Dealer wins against Player.
+	Player stack is now -105.0$
+Hand #97. Card count is: 14
+	Player bets 10$
+	Player has: K♦, K♣ = 20
+	Dealer has: Q♥
+	Player stands
+	Dealer's turn
+	Dealer hits 8♥ and has: Q♥, 8♥ = 18
+	Player wins!
+	Player stack is now -95.0$
+Hand #98. Card count is: 10
+	Player bets 10$
+	Player has: 4♥, J♣ = 14
+	Dealer has: 8♦
+	Player hits 3♣ and has: 4♥, J♣, 3♣ = 17
+	Player stands
+	Dealer's turn
+	Dealer hits 3♦ and has: 8♦, 3♦ = 11
+	Dealer hits 10♠ and has: 8♦, 3♦, 10♠ = 21
+	Dealer wins against Player.
+	Player stack is now -105.0$
+Hand #99. Card count is: 11
+	Player bets 10$
+	Player has: J♣, J♠ = 20
+	Dealer has: 3♠
+	Player stands
+	Dealer's turn
+	Dealer hits 2♣ and has: 3♠, 2♣ = 5
+	Dealer hits 8♣ and has: 3♠, 2♣, 8♣ = 13
+	Dealer hits 8♣ and has: 3♠, 2♣, 8♣, 8♣ = 21
+	Dealer wins against Player.
+	Player stack is now -115.0$
+Hand #100. Card count is: 11
+	Player bets 10$
+	Player has: 3♠, A♣ = [4, 14]
+	Dealer has: J♥
+	Player hits 7♦ and has: 3♠, A♣, 7♦ = [11, 21]
+	Player stands
+	Dealer's turn
+	Dealer hits K♥ and has: J♥, K♥ = 20
+	Player wins!
+	Player stack is now -105.0$

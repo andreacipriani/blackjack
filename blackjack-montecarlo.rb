@@ -22,6 +22,7 @@ class Game
     end
     
     def play
+        puts "Player starts with #{@stack}$"
         hand_counter = 1
         @n_hands.times do
             play_hand(hand_counter)
